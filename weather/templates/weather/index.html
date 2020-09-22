@@ -1,0 +1,19 @@
+{% if location %}
+  <ul>
+    {% for key, values in location.items %}
+      <li>{{ key }} : {{ values }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No location data available</p>
+{% endif %}
+
+{% if weather %}
+  <ul>
+    {% for key, values in weather.items %}
+      <li>{{ key }} : {{ values }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No weather data available</p>
+{% endif %}
