@@ -1,19 +1,40 @@
-{% if location %}
-  <ul>
-    {% for key, values in location.items %}
-      <li>{{ key }} : {{ values }}</li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>No location data available</p>
-{% endif %}
-
-{% if weather %}
-  <ul>
-    {% for key, values in weather.items %}
-      <li>{{ key }} : {{ values }}</li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>No weather data available</p>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=`, initial-scale=1.0">
+  <title>Weather</title>
+</head>
+<body>
+  <div class="container">
+    <div class="header-section">
+      <div class="header-frame">
+        {% if location.city %}
+          {{ location.city }}
+        {% else %}
+          <p>Unable to determine location</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="weather-frame">
+      <h3>Current Weather</h3>
+      <div class="weather-stats">
+        {% if weather %}
+        <ul>
+          {% for key in weather %}
+            <li>{{ key }}</li>
+          {% endfor %}
+        </ul>
+        <ul>
+          {% for values in weather.values %}
+            <li>{{ values }}</li>
+          {% endfor %}
+        </ul>
+        {% else %}
+          <p>No weather information available</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

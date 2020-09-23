@@ -20,12 +20,12 @@ def index(request):
 def call_weather(city='Torrance'):
   weather_data = WeatherConfig.get_weather(city)
   loc_obj['city'] = weather_data['name']
-  loc_obj['lat'] = weather_data['coord']['lat']
-  loc_obj['long'] = weather_data['coord']['lon']
-  loc_obj['timezone_offset'] = weather_data['timezone']
+  loc_obj['latitude'] = weather_data['coord']['lat']
+  loc_obj['longitude'] = weather_data['coord']['lon']
+  loc_obj['timezone offset'] = weather_data['timezone']
 
-  weather_obj['temp'] = weather_data['main']['temp']
-  weather_obj['temp_min'] = weather_data['main']['temp_min']
-  weather_obj['temp_max'] = weather_data['main']['temp_max']
+  weather_obj['temperature'] = weather_data['main']['temp']
+  weather_obj['min temperature'] = weather_data['main']['temp_min']
+  weather_obj['max temperature'] = weather_data['main']['temp_max']
   weather_obj['humidity'] = weather_data['main']['humidity']
-  weather_obj['wind_spd'] = weather_data['wind']['speed']
+  weather_obj['wind speed'] = weather_data['wind']['speed']
