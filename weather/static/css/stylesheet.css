@@ -1,0 +1,21 @@
+body {
+  background: #709FB0;
+}
+
+ul {
+  display: block;
+  list-style: none;
+  text-align: left;
+  text-transform: capitalize;
+  padding-inline-start: 0px;
+  padding-inline-end: 0px;
+}
+
+.container {
+  text-align: center;
+}
+
+.weather-stats {
+  display: inline-flex;
+  gap: 40px
+}

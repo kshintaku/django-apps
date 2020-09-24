@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {% load static %}
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=`, initial-scale=1.0">
+  <meta name="viewport", initial-scale=1.0">
   <title>Weather</title>
+  <link rel="stylesheet" href="{% static '/css/stylesheet.css' %}" type="text/css">
 </head>
 <body>
   <div class="container">
     <div class="header-section">
       <div class="header-frame">
         {% if location.city %}
-          {{ location.city }}
+          <h2>{{ location.city }}</h2>
         {% else %}
           <p>Unable to determine location</p>
         {% endif %}
