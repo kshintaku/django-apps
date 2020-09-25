@@ -18,6 +18,13 @@
         {% endif %}
       </div>
     </div>
+    <div class="city-search">
+      <form action="/weather/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+      </form>
+    </div>
     <div class="weather-frame">
       <h3>Current Weather</h3>
       <div class="weather-stats">
