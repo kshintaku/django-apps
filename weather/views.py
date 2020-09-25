@@ -45,11 +45,11 @@ def call_weather(city):
   loc_obj['longitude'] = weather_data['coord']['lon']
   loc_obj['timezone offset'] = weather_data['timezone']
 
-  weather_obj['temperature'] = weather_data['main']['temp']
-  weather_obj['min temperature'] = weather_data['main']['temp_min']
-  weather_obj['max temperature'] = weather_data['main']['temp_max']
-  weather_obj['humidity'] = weather_data['main']['humidity']
-  weather_obj['wind speed'] = weather_data['wind']['speed']
+  weather_obj['temperature'] = '{:.1f}°'.format(weather_data['main']['temp'])
+  weather_obj['min temperature'] = '{:.1f}°'.format(weather_data['main']['temp_min'])
+  weather_obj['max temperature'] = '{:.1f}°'.format(weather_data['main']['temp_max'])
+  weather_obj['humidity'] = '{}%'.format(weather_data['main']['humidity'])
+  weather_obj['wind speed'] = '{:.1f}'.format(weather_data['wind']['speed'])
 
 def get_weather(city):
   weather_url = 'https://api.openweathermap.org/data/2.5/weather?'

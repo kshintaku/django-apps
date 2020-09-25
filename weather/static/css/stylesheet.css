@@ -20,15 +20,25 @@ form {
   margin-bottom: auto;
   vertical-align: middle;
   justify-content: center;
-  width: 40%;
+  width: 50%;
   align-items: center;
-  height: 2.5rem;
+  height: 3.5rem;
   border-radius: 10px;
   background: hsla(0,0%,100%,.2);
   margin-right: auto;
   margin-left: auto;
   gap: 10px;
 }
+
+input[type=text] {
+  background-color: white;
+  background-image: url('../icons/search.svg');
+  background-position: 6px 6px;
+  background-repeat: no-repeat;
+  padding: 10px;
+  padding-left: 40px;
+}
+
 
 ul {
   display: block;
