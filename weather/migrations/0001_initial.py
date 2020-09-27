@@ -7,29 +7,50 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Location',
+            name="Location",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('city', models.CharField(max_length=100, verbose_name='City')),
-                ('latitude', models.FloatField(verbose_name='Latitude')),
-                ('longitude', models.FloatField(verbose_name='Longitude')),
-                ('timezone', models.CharField(max_length=100, verbose_name='Time Zone')),
-                ('timezone_offset', models.IntegerField(verbose_name='timezone offset from UTC in sec')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("city", models.CharField(max_length=100, verbose_name="City")),
+                ("latitude", models.FloatField(verbose_name="Latitude")),
+                ("longitude", models.FloatField(verbose_name="Longitude")),
+                (
+                    "timezone",
+                    models.CharField(max_length=100, verbose_name="Time Zone"),
+                ),
+                (
+                    "timezone_offset",
+                    models.IntegerField(verbose_name="timezone offset from UTC in sec"),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Weather',
+            name="Weather",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('weather_time', models.DateTimeField(verbose_name='Current Time')),
-                ('current_temp', models.FloatField(verbose_name='Current Temp')),
-                ('current_uv', models.FloatField(blank=True, verbose_name='UV Index')),
-                ('current_wind_speed', models.FloatField(verbose_name='Wind Speed')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("weather_time", models.DateTimeField(verbose_name="Current Time")),
+                ("current_temp", models.FloatField(verbose_name="Current Temp")),
+                ("current_uv", models.FloatField(blank=True, verbose_name="UV Index")),
+                ("current_wind_speed", models.FloatField(verbose_name="Wind Speed")),
             ],
         ),
     ]
