@@ -1,0 +1,40 @@
+    body {
+        background-color: #e05151;
+        background-image: -webkit-gradient(linear,left top,left bottom,color-stop(9%,#e05151),to(#f0a44e));
+        background-attachment: fixed;
+        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
+
+    ul {
+        display: block;
+        list-style: none;
+        text-align: left;
+        text-transform: capitalize;
+        padding-inline-start: 0px;
+        padding-inline-end: 0px;
+    }
+
+    .container {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header-section {
+        height: 3rem;
+        background: hsla(0,0%,100%,.1)!important;
+    }
+    
+    .header-frame {
+        text-transform: capitalize;
+        transform: translateY(10%);
+    }
