@@ -1,6 +1,6 @@
     body {
-        background-color: #e05151;
-        background-image: -webkit-gradient(linear,left top,left bottom,color-stop(9%,#e05151),to(#f0a44e));
+        background-color: #9c9c9c;
+        background-image: -webkit-gradient(linear,left top,left bottom,color-stop(9%,#e9e9e9),to(#9c9c9c));
         background-attachment: fixed;
         font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
         line-height: 1.5;
@@ -15,12 +15,21 @@
     }
 
     ul {
-        display: block;
+        display: inline-block;
         list-style: none;
         text-align: left;
         text-transform: capitalize;
         padding-inline-start: 0px;
         padding-inline-end: 0px;
+    }
+
+    ol {
+        text-align: left;
+    }
+
+    .ingredient-group {
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
 
     .container {

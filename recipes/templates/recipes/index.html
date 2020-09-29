@@ -21,18 +21,19 @@
         </div>
         <article>
             <div class="ingredient-section">
-                <ul>
-                    {% for type in ingredients %}
-                        <li>{{ type }}</li>
+                {% for type, value in ingredients.items %}
+                    <ul class="ingredient-group">
+                        <li><b>{{ type }}</b></li>
                         <ul>
-                            {% for item in ingredients.values.values %}
-                                <li>{{ item }}</li>
+                            {% for item, value2 in value.items %}
+                                <li>{{ value2.amount }} {{ value2.unit }} {{ item }}</li>
                             {% endfor %}
                         </ul>
-                    {% endfor %}
-                </ul>
+                    </ul>
+                {% endfor %}
             </div>
             <div class="steps-section">
+                <h3>Directions:</h3>
                 <ol>
                     {% for step in directions %}
                         <li>{{ step }}</li>
