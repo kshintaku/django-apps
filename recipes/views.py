@@ -1,4 +1,4 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 import json
@@ -10,19 +10,14 @@ def index(request):
     temp_json = json.loads(temp)
     steps = temp_json['recipe']['directions']
     ingredients = temp_json['ingredients']
-    # print(ingredients['wet ingredients'])
-    # for key in ingredients:
-    #     ing
     ing_array = [type for type in temp_json['ingredients']]
-    # for idx, val in enumerate(ing_array):
-        # ing_array[idx].append(temp_json['ingredients'][val])
-        # ing_array = {val, item for item in temp_json['ingredients'][val]}
-    # print(ing_array)
     name = "matcha white chocolate chip cookies"
+    main_url = '/images/mwccc.jpg'
 
     template = loader.get_template("recipes/index.html")
     context = {
         "title": name,
+        "main_url": main_url,
         "ingredients": ingredients,
         "ing_array": ing_array,
         "directions": steps,
