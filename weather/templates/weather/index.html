@@ -14,6 +14,9 @@
       <div class="header-frame">
         {% if location.city %}
           <h2>{{ location.city }}</h2>
+        {% elif error %}
+          <h2>{{ error.code }}</h2>
+          <p>{{ error.message }}</p>
         {% else %}
           <p>Unable to determine location</p>
         {% endif %}
@@ -29,7 +32,7 @@
     <div class="weather-frame">
       <h3>Current Weather</h3>
       <div class="weather-stats">
-        {% if weather %}
+        {% if weather.temperature %}
 
           {% for key, values in weather.items %}
             <ul>
@@ -37,12 +40,6 @@
               <li>{{ values }}</li>
             </ul>
           {% endfor %}
-        
-        <!-- <ul>
-          {% for values in weather.values %}
-            <li>{{ values }}</li>
-          {% endfor %}
-        </ul> -->
         {% else %}
           <p>No weather information available</p>
         {% endif %}

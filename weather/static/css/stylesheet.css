@@ -1,18 +1,18 @@
 body {
-  background-color: #6e3f98;
-  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(9%,#6e3f98),to(#d6ab97));
+  background: linear-gradient(#6e3f98, #d6ab97);
+  background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
   line-height: 1.5;
   margin: 0;
   padding: 0;
+  background-repeat: no-repeat;
 }
 
 html {
   padding: 0;
   margin: 0;
   border: 0;
-  height: auto;
 }
 
 form {
@@ -91,4 +91,9 @@ ul {
   display: inline-flex;
   flex-direction: column;
   width: 92%;
+}
+
+footer {
+  margin: 0;
+  overflow: hidden;
 }

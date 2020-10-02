@@ -1,15 +1,16 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 import requests
 import os
-import json
+# import json
 
 from .forms import SearchLocForm
 
 # Create your views here.
 loc_obj = {}
 weather_obj = {}
+error_obj = {}
 
 
 def spec_city(request, city):
@@ -17,6 +18,7 @@ def spec_city(request, city):
     call_weather(city)
     template = loader.get_template("weather/index.html")
     context = {
+        "error": error_obj,
         "location": loc_obj,
         "weather": weather_obj,
         "form": form,
@@ -33,6 +35,7 @@ def index(request):
         form = SearchLocForm()
     template = loader.get_template("weather/index.html")
     context = {
+        "error": error_obj,
         "location": loc_obj,
         "weather": weather_obj,
         "form": form,
@@ -42,16 +45,22 @@ def index(request):
 
 def call_weather(city):
     weather_data = get_weather(city)
-    loc_obj["city"] = weather_data["name"]
-    loc_obj["latitude"] = weather_data["coord"]["lat"]
-    loc_obj["longitude"] = weather_data["coord"]["lon"]
-    loc_obj["timezone offset"] = weather_data["timezone"]
+    if weather_data["cod"] != 200:
+        error_obj["code"] = weather_data["cod"]
+        error_obj["message"] = weather_data["message"]
+        loc_obj["city"] = ""
+        weather_obj["temperature"] = ""
+    else:
+        loc_obj["city"] = weather_data["name"]
+        loc_obj["latitude"] = weather_data["coord"]["lat"]
+        loc_obj["longitude"] = weather_data["coord"]["lon"]
+        loc_obj["timezone offset"] = weather_data["timezone"]
 
-    weather_obj["temperature"] = "{:.1f}°".format(weather_data["main"]["temp"])
-    weather_obj["min temperature"] = "{:.1f}°".format(weather_data["main"]["temp_min"])
-    weather_obj["max temperature"] = "{:.1f}°".format(weather_data["main"]["temp_max"])
-    weather_obj["humidity"] = "{}%".format(weather_data["main"]["humidity"])
-    weather_obj["wind speed"] = "{:.1f}".format(weather_data["wind"]["speed"])
+        weather_obj["temperature"] = "{:.1f}°".format(weather_data["main"]["temp"])
+        weather_obj["min temperature"] = "{:.1f}°".format(weather_data["main"]["temp_min"])
+        weather_obj["max temperature"] = "{:.1f}°".format(weather_data["main"]["temp_max"])
+        weather_obj["humidity"] = "{}%".format(weather_data["main"]["humidity"])
+        weather_obj["wind speed"] = "{:.1f}".format(weather_data["wind"]["speed"])
 
 
 def get_weather(city):
