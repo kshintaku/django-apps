@@ -12,17 +12,20 @@ html {
   padding: 0;
   margin: 0;
   border: 0;
+  height: auto;
 }
 
 form {
-  margin-top: auto;
+  /* margin-top: 2em; */
+  padding: .5em;
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: auto;
   vertical-align: middle;
   justify-content: center;
   width: 50%;
   align-items: center;
-  height: 3.5rem;
+  height: auto;
   border-radius: 10px;
   background: hsla(0,0%,100%,.2);
   margin-right: auto;
@@ -41,12 +44,16 @@ input[type=text] {
 
 
 ul {
-  display: block;
+  display: flex;
   list-style: none;
   text-align: left;
   text-transform: capitalize;
   padding-inline-start: 0px;
   padding-inline-end: 0px;
+  margin: 0;
+  line-height: 1.5;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .city-search {
@@ -60,7 +67,8 @@ ul {
 }
 
 .header-section {
-  height: 3rem;
+  height: auto;
+  padding: .001em;
   background: hsla(0,0%,100%,.1)!important;
 }
 
@@ -81,5 +89,6 @@ ul {
 
 .weather-stats {
   display: inline-flex;
-  gap: 3rem;
+  flex-direction: column;
+  width: 92%;
 }

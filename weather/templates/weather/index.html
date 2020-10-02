@@ -3,9 +3,10 @@
 <head>
   {% load static %}
   <meta charset="UTF-8">
-  <meta name="viewport", initial-scale=1.0">
+  <meta name="viewport", content="width=device-width, initial-scale=1.0">
   <title>Weather</title>
   <link rel="stylesheet" href="{% static '/css/stylesheet.css' %}" type="text/css">
+  <link rel="icon" href="{% static '/icons/favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
   <div class="container">
@@ -29,16 +30,19 @@
       <h3>Current Weather</h3>
       <div class="weather-stats">
         {% if weather %}
-        <ul>
-          {% for key in weather %}
-            <li>{{ key }}</li>
+
+          {% for key, values in weather.items %}
+            <ul>
+              <li>{{ key }}</li>
+              <li>{{ values }}</li>
+            </ul>
           {% endfor %}
-        </ul>
-        <ul>
+        
+        <!-- <ul>
           {% for values in weather.values %}
             <li>{{ values }}</li>
           {% endfor %}
-        </ul>
+        </ul> -->
         {% else %}
           <p>No weather information available</p>
         {% endif %}
