@@ -4,11 +4,7 @@ from django.db import models
 class LocationManager(models.Manager):
     def create_location(self, city, lat, lon, tz, tzo):
         loc = self.create(
-            city=city,
-            latitude=lat,
-            longitude=lon,
-            timezone=tz,
-            timezone_offset=tzo
+            city=city, latitude=lat, longitude=lon, timezone=tz, timezone_offset=tzo
         )
         return loc
 
@@ -25,10 +21,7 @@ class Location(models.Model):
 class WeatherManager(models.Manager):
     def create_weather(self, time, temp, uv, ws):
         weather = self.create(
-            weather_time=time,
-            current_temp=temp,
-            current_uv=uv,
-            current_wind_speed=ws
+            weather_time=time, current_temp=temp, current_uv=uv, current_wind_speed=ws
         )
         return weather
 

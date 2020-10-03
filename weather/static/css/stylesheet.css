@@ -30,16 +30,18 @@ form {
   background: hsla(0,0%,100%,.2);
   margin-right: auto;
   margin-left: auto;
-  gap: 10px;
+  gap: 1em;
 }
 
 input[type=text] {
   background-color: white;
-  background-image: url('../icons/search.svg');
-  background-position: 6px 6px;
-  background-repeat: no-repeat;
-  padding: 10px;
-  padding-left: 40px;
+  border-radius: 10px;
+  padding: .4em;
+  width: 60%;
+}
+
+input[type=image] {
+  width: 1.5rem;
 }
 
 

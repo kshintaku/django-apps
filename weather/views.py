@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 import requests
 import os
+
 # import json
 
 from .forms import SearchLocForm
@@ -57,8 +58,12 @@ def call_weather(city):
         loc_obj["timezone offset"] = weather_data["timezone"]
 
         weather_obj["temperature"] = "{:.1f}°".format(weather_data["main"]["temp"])
-        weather_obj["min temperature"] = "{:.1f}°".format(weather_data["main"]["temp_min"])
-        weather_obj["max temperature"] = "{:.1f}°".format(weather_data["main"]["temp_max"])
+        weather_obj["min temperature"] = "{:.1f}°".format(
+            weather_data["main"]["temp_min"]
+        )
+        weather_obj["max temperature"] = "{:.1f}°".format(
+            weather_data["main"]["temp_max"]
+        )
         weather_obj["humidity"] = "{}%".format(weather_data["main"]["humidity"])
         weather_obj["wind speed"] = "{:.1f}".format(weather_data["wind"]["speed"])
 
