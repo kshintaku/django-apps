@@ -31,9 +31,15 @@
     </div>
     <div class="weather-frame">
       <h3>Current Weather</h3>
+      {% if main_display.main %}
+        <div class="weather-display">
+          <div class="temperature">{{ main_display.temperature }}</div>
+          <img src="{{ main_display.icon }}" alt="">
+          <div class="description">{{ main_display.description }}</div>
+        </div>
+      {% endif %}
       <div class="weather-stats">
-        {% if weather.temperature %}
-
+        {% if weather.humidity %}
           {% for key, values in weather.items %}
             <ul>
               <li>{{ key }}</li>

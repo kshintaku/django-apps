@@ -12,6 +12,7 @@ from .forms import SearchLocForm
 loc_obj = {}
 weather_obj = {}
 error_obj = {}
+main_display = {}
 
 
 def spec_city(request, city):
@@ -21,6 +22,7 @@ def spec_city(request, city):
     context = {
         "error": error_obj,
         "location": loc_obj,
+        "main_display": main_display,
         "weather": weather_obj,
         "form": form,
     }
@@ -38,6 +40,7 @@ def index(request):
     context = {
         "error": error_obj,
         "location": loc_obj,
+        "main_display": main_display,
         "weather": weather_obj,
         "form": form,
     }
@@ -50,22 +53,34 @@ def call_weather(city):
         error_obj["code"] = weather_data["cod"]
         error_obj["message"] = weather_data["message"]
         loc_obj["city"] = ""
-        weather_obj["temperature"] = ""
+        weather_obj["humidity"] = ""
+        main_display["main"] = ""
     else:
         loc_obj["city"] = weather_data["name"]
         loc_obj["latitude"] = weather_data["coord"]["lat"]
         loc_obj["longitude"] = weather_data["coord"]["lon"]
         loc_obj["timezone offset"] = weather_data["timezone"]
 
-        weather_obj["temperature"] = "{:.1f}°".format(weather_data["main"]["temp"])
+        main_display["temperature"] = "{:.1f}°".format(
+            weather_data["main"]["temp"]
+            )
         weather_obj["min temperature"] = "{:.1f}°".format(
             weather_data["main"]["temp_min"]
         )
         weather_obj["max temperature"] = "{:.1f}°".format(
             weather_data["main"]["temp_max"]
         )
-        weather_obj["humidity"] = "{}%".format(weather_data["main"]["humidity"])
-        weather_obj["wind speed"] = "{:.1f}".format(weather_data["wind"]["speed"])
+        weather_obj["humidity"] = "{}%".format(
+            weather_data["main"]["humidity"]
+            )
+        weather_obj["wind speed"] = "{:.1f}".format(
+            weather_data["wind"]["speed"]
+        )
+        main_display["description"] = weather_data["weather"][0]["description"]
+        main_display["main"] = weather_data["weather"][0]["main"]
+        main_display["icon"] = "http://openweathermap.org/img/wn/{}@2x.png".format(
+            weather_data["weather"][0]["icon"]
+        )
 
 
 def get_weather(city):
