@@ -16,21 +16,19 @@ html {
 }
 
 form {
-  /* margin-top: 2em; */
   padding: .5em;
   display: flex;
   flex-wrap: wrap;
   margin-bottom: auto;
-  vertical-align: middle;
   justify-content: center;
-  width: 50%;
+  width: 100%;
   align-items: center;
-  height: auto;
-  border-radius: 10px;
-  background: hsla(0,0%,100%,.2);
-  margin-right: auto;
-  margin-left: auto;
+  background: #6e3f98;
   gap: 1em;
+}
+
+form label {
+  display: none;
 }
 
 input[type=text] {
@@ -60,19 +58,28 @@ ul {
 }
 
 .city-search {
-  margin: 1rem;
+  position: sticky;
+  margin-bottom: 3em;
+  top: 4.5em;
+  z-index: 1;
+  /* width: 100%; */
 }
 
 .container {
   text-align: center;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .header-section {
   height: auto;
   padding: .001em;
-  background: hsla(0,0%,100%,.1)!important;
+  background: #6e3f98;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 }
 
 .header-frame {

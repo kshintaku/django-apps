@@ -61,21 +61,15 @@ def call_weather(city):
         loc_obj["longitude"] = weather_data["coord"]["lon"]
         loc_obj["timezone offset"] = weather_data["timezone"]
 
-        main_display["temperature"] = "{:.1f}°".format(
-            weather_data["main"]["temp"]
-            )
+        main_display["temperature"] = "{:.1f}°".format(weather_data["main"]["temp"])
         weather_obj["min temperature"] = "{:.1f}°".format(
             weather_data["main"]["temp_min"]
         )
         weather_obj["max temperature"] = "{:.1f}°".format(
             weather_data["main"]["temp_max"]
         )
-        weather_obj["humidity"] = "{}%".format(
-            weather_data["main"]["humidity"]
-            )
-        weather_obj["wind speed"] = "{:.1f}".format(
-            weather_data["wind"]["speed"]
-        )
+        weather_obj["humidity"] = "{}%".format(weather_data["main"]["humidity"])
+        weather_obj["wind speed"] = "{:.1f}".format(weather_data["wind"]["speed"])
         main_display["description"] = weather_data["weather"][0]["description"]
         main_display["main"] = weather_data["weather"][0]["main"]
         main_display["icon"] = "http://openweathermap.org/img/wn/{}@2x.png".format(
