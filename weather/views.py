@@ -7,10 +7,12 @@ import os
 # import json
 
 from .forms import SearchLocForm
+from .forms import UnitToggleForm
 
 # Create your views here.
 loc_obj = {}
 weather_obj = {}
+weather_plus_obj = {}
 error_obj = {}
 main_display = {}
 
@@ -30,10 +32,12 @@ def spec_city(request, city):
 
 
 def index(request):
+    unit = UnitToggleForm()
     if request.method == "POST":
         form = SearchLocForm(request.POST)
         if form.is_valid():
             call_weather(form.cleaned_data["loc_info"])
+            form = SearchLocForm()
     else:
         form = SearchLocForm()
     template = loader.get_template("weather/index.html")
@@ -43,6 +47,8 @@ def index(request):
         "main_display": main_display,
         "weather": weather_obj,
         "form": form,
+        "unit": unit,
+        "weather_plus": weather_plus_obj,
     }
     return HttpResponse(template.render(context, request))
 
@@ -75,6 +81,10 @@ def call_weather(city):
         main_display["icon"] = "http://openweathermap.org/img/wn/{}@2x.png".format(
             weather_data["weather"][0]["icon"]
         )
+        more_weather_data = get_weather_plus(loc_obj["latitude"], loc_obj["longitude"])
+        for idx, val in enumerate(more_weather_data["daily"]):
+            dict_key = "day" + str(idx + 1)
+            weather_plus_obj[dict_key] = ["{:.1f}°".format(val["temp"]["day"]), "{:.1f}°".format(val["temp"]["min"]), "{:.1f}°".format(val["temp"]["max"])]
 
 
 def get_weather(city):
@@ -83,6 +93,21 @@ def get_weather(city):
         weather_url
         + "q="
         + city
+        + "&appid="
+        + os.environ.get("OPEN_WEATHER_KEY")
+        + "&units="
+        + "imperial"
+    ).json()
+
+def get_weather_plus(lat, lon):
+    weather_url = "https://api.openweathermap.org/data/2.5/onecall?"
+    return requests.get(
+        weather_url
+        + "lat="
+        + str(loc_obj["latitude"])
+        + "&lon="
+        + str(loc_obj["longitude"])
+        + "&exclude=current,minutely,hourly"
         + "&appid="
         + os.environ.get("OPEN_WEATHER_KEY")
         + "&units="

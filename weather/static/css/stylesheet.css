@@ -127,6 +127,25 @@ ul {
   width: 92%;
 }
 
+.weather-frame {
+  background: hsla(0,0%,100%,.1)!important;
+  margin: 2rem;
+  padding: 1rem;
+  width: 50%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 6px;
+  box-shadow: 0 0 12px 0 rgba(0,0,0,.2);
+}
+
+.forecast-stats {
+  display: inline-flex;
+  flex-direction: column;
+  width: 92%;
+  margin-top: 2rem;
+}
+
 footer {
   margin: 0;
   overflow: hidden;
