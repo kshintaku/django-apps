@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 import requests
 import os
+import datetime
 
 # import json
 
@@ -82,9 +83,10 @@ def call_weather(city):
             weather_data["weather"][0]["icon"]
         )
         more_weather_data = get_weather_plus(loc_obj["latitude"], loc_obj["longitude"])
+        today = datetime.datetime.now()
         for idx, val in enumerate(more_weather_data["daily"]):
             dict_key = "day" + str(idx + 1)
-            weather_plus_obj[dict_key] = ["{:.1f}°".format(val["temp"]["day"]), "{:.1f}°".format(val["temp"]["min"]), "{:.1f}°".format(val["temp"]["max"])]
+            weather_plus_obj[dict_key] = [datetime.datetime(today.year, today.month, today.day+idx).strftime("%A"), "{:.1f}°".format(val["temp"]["day"]), "{:.1f}°".format(val["temp"]["min"]), "{:.1f}°".format(val["temp"]["max"])]
 
 
 def get_weather(city):

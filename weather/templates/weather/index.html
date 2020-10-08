@@ -25,7 +25,8 @@
     <div class="city-search">
       <form action="/weather/" method="post">
         {% csrf_token %}
-        {{ form }}
+        <!-- {{ unit.unit_info }} -->
+        {{ form.loc_info }}
         <input type="image" src="{% static '/icons/search-solid.svg' %}" value="Submit">
       </form>
     </div>
@@ -49,6 +50,20 @@
         {% else %}
           <p>No weather information available</p>
         {% endif %}
+      </div>
+      <div class="forecast-stats">
+        <ul class="forecast-header">
+          <li><strong>This weeks weather</strong></li>
+          <li><strong>min/max</strong></li>
+        </ul>
+          {% for key, values in weather_plus.items %}
+          <ul class="forecast-details">
+            <li class="day-temp">{{ values.0 }}</li>
+            <li class="min-temp">{{ values.1 }}</li>
+            <li class="max-temp">{{ values.2 }} / {{ values.3 }}</li>
+          </ul>
+          {% endfor %}
+        </ul>
       </div>
     </div>
   </div>
