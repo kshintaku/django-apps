@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" type="text/css">
+    <link rel="icon" href="{% static '/images/favicon.ico' %}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <div class="header-section">
+            <div class="header-frame">
+                {% if title %}
+                    <h2>{{ title }}</h2>
+                {% else %}
+                    <p>No recipe found =(</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="main-image">
+            <img src="{% static main_url %}" alt="">
+        </div>
+        <article>
+            <div class="ingredient-section">
+                {% for type, value in ingredients.items %}
+                    <ul class="ingredient-group">
+                        <li><b>{{ type }}</b></li>
+                        <ul>
+                            {% for item, value2 in value.items %}
+                                <li>{{ value2.amount }} {{ value2.unit }} {{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                    </ul>
+                {% endfor %}
+            </div>
+            <div class="steps-section">
+                <h3>Directions:</h3>
+                <ol>
+                    {% for step in directions %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </article>
+    </div>
+</body>
+</html>
