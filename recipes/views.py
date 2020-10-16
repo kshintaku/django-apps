@@ -23,7 +23,7 @@ def recipeView(request, recipe_id):
     steps = temp_json['recipe']['directions']
     ingredients = temp_json['ingredients']
     ing_array = [type for type in temp_json['ingredients']]
-    name = "matcha white chocolate chip cookies"
+    name = recipe.name
     main_url = '/images/mwccc.jpg'
 
     template = loader.get_template("recipes/recipe.html")
