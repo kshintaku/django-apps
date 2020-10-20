@@ -11,4 +11,5 @@ class RecipeAdmin(admin.ModelAdmin):
     ]
     list_display = ('name', 'pub_date')
 
+
 admin.site.register(Recipe, RecipeAdmin)

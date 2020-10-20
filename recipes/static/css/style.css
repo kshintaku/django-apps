@@ -14,9 +14,21 @@
         border: 0;
     }
 
+    nav {
+        position: sticky;
+        background-color: black;
+        top: 0;
+        padding-left: 5%;
+    }
+
+    nav a {
+        color: #9c9c9c;
+    }
+
     img {
         max-width: 80%;
         height: auto;
+        border-radius: 10px;
     }
 
     ul {
@@ -47,8 +59,11 @@
 
     .container {
         text-align: center;
-        margin: 0;
-        padding: 0;
+        margin: 5%;
+        border: darkblue;
+        border-radius: 10px;
+        border-style: outset;
+        border-width: 2px;
     }
 
     .header-section {

@@ -24,7 +24,7 @@ def recipeView(request, recipe_id):
     ingredients = temp_json['ingredients']
     ing_array = [type for type in temp_json['ingredients']]
     name = recipe.name
-    main_url = '/images/mwccc.jpg'
+    main_url = recipe.img_url
 
     template = loader.get_template("recipes/recipe.html")
     context = {
