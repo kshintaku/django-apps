@@ -6,7 +6,7 @@ from .models import Recipe
 
 class RecipeAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Recipe information', {'fields': ['name', 'recipe', 'img_url']}),
+        ('Recipe information', {'fields': ['name', 'recipe', 'img_url', 'category']}),
         ('Date information', {'fields': ['pub_date']}),
     ]
     list_display = ('name', 'pub_date')
