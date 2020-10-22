@@ -12,6 +12,7 @@
     <nav>
         <ul>
             <li><a href="javascript:history.back()">Back</a></li>
+            <li><strong>{{ category }}</strong></li>
         </ul>
     </nav>
     <div class="container">
@@ -20,19 +21,17 @@
             <p>I'm trying to organize some of my recipes and you'll soon have access to all of them!</p>
         </div>
         <section>
-            {% if category_list %}
-                {% for key, values in category_list.items %}
-                {% if values %}
-                <article class="category-container">
-                    <h2><a href="/recipes/{{ key }}">{{ key }}</a></h2>
-                    <ul>
-                        {% for x in values %}
-                            <li><a href="/recipes/{{ x.id }}"><img src="{% static x.img_url %}" alt="" /><br/>{{ x.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </article>
-                {% endif %}
-                {% endfor %}
+            {% if recipe_list %}
+            <article class="category-container">
+                <h2>{{ category }}</h2>
+                <ul>
+                    {% for recipe in recipe_list %}
+                        <li><a href="/recipes/{{ recipe.id }}"><img src="{% static recipe.img_url %}" alt="" /><br/>{{ recipe.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </article>
+            {% else %}
+                <p>No recipes available.</p>
             {% endif %}
         </section>
     </div>
