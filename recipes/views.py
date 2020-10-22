@@ -35,3 +35,14 @@ def recipeView(request, recipe_id):
         "directions": steps,
     }
     return HttpResponse(template.render(context, request))
+
+
+def categoryView(request, category):
+    my_filter = {}
+    my_filter["category"] = category
+    recipe_list = Recipe.objects.filter(**my_filter)
+    template = loader.get_template("recipes/index.html")
+    context = {
+        "recipe_list": recipe_list,
+    }
+    return HttpResponse(template.render(context, request))
