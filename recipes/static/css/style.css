@@ -53,12 +53,11 @@
 
     section {
         display: inline-flex;
-        flex-direction: column;
+        flex-direction: row;
         width: 100%;
-        margin-left: auto;
-        margin-right: auto;
         text-align: center;
         justify-content: center;
+        flex-wrap: wrap;
     }
 
     article h2 {
@@ -81,6 +80,7 @@
     .ingredient-section {
         margin-left: 5%;
         margin-right: 5%;
+        flex-wrap: wrap;
     }
 
     .ingredient-group {
@@ -88,6 +88,15 @@
         margin-right: 4%;
         margin-top: 2%;
         margin-bottom: 2%;
+        width: 40%;
+        text-align: left;
+    }
+
+    .ingredient-group ul {
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        justify-content: flex-start;
     }
 
     .container {

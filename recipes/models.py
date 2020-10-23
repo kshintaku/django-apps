@@ -12,6 +12,7 @@ class Recipe(models.Model):
         ("breakfast", "BREAKFAST"),
         ("lunch", "LUNCH"),
         ("dinner", "DINNER"),
+        ("side", "SIDE"),
         ("dessert", "DESSERT"),
         ("drink", "DRINK"),
     )
