@@ -53,3 +53,21 @@ def categoryView(request, category):
         "recipe_list": recipe_list,
     }
     return HttpResponse(template.render(context, request))
+
+
+def searchView(request, search_term):
+    results = set()
+    recipe_list = Recipe.objects.order_by("pub_date")
+    for recipe in recipe_list:
+        temp_json = recipe.recipe
+        ingredients = temp_json["ingredients"]
+        for list_type in ingredients:
+            for ingr in ingredients[list_type].keys():
+                if search_term in ingr:
+                    results.add(recipe)
+    template = loader.get_template("recipes/search_results.html")
+    print(results)
+    context = {
+        "recipe_list": results,
+    }
+    return HttpResponse(template.render(context, request))
