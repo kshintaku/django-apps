@@ -20,6 +20,13 @@
             <h1>Welcome to Keith's collections of recipes</h1>
             <p>I'm trying to organize some of my recipes and you'll soon have access to all of them!</p>
         </div>
+        <div class="search-container">
+            <form action="/recipes/search/" method="post">
+                {% csrf_token %}
+                {{ form.search_term }}
+                <input type="image" src="{% static '/icons/search-solid.svg' %}" value="Submit">
+            </form>
+        </div>
         <section>
             {% if recipe_list %}
             <article class="category-container">

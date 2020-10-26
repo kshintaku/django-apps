@@ -6,6 +6,8 @@
         line-height: 1.5;
         margin: 0;
         padding: 0;
+        display: flex;
+        flex-direction: column;
     }
 
     html {
@@ -121,4 +123,40 @@
     .steps-section {
         margin-left: 7%;
         margin-right: 7%
+    }
+
+    form {
+        padding: .5em;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: auto;
+        justify-content: center;
+        align-items: center;
+        background: #ffffff;
+        gap: 1em;
+        border-radius: 10px;
+    }
+    
+    form label {
+        display: none;
+    }
+    
+    input[type=text] {
+        background-color: white;
+        border: none;
+        border-radius: 10px;
+        padding: .4em;
+        width: 60%;
+        max-width: 200px;
+    }
+    
+    input[type=image] {
+        width: 1.5rem;
+    }
+
+    .search-container {
+        display: flex;
+        width: 27%;
+        margin-left: auto;
+        margin-right: auto;
     }
