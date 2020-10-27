@@ -15,33 +15,40 @@
         </ul>
     </nav>
     <div class="container">
-        <div class="intro">
-            <h1>Welcome to Keith's collections of recipes</h1>
-            <p>I'm trying to organize some of my recipes and you'll soon have access to all of them!</p>
+        <div class="header-container">
+            <div class="intro">
+                <h1>Welcome to Keith's collections of recipes</h1>
+                <p>I'm trying to organize some of my recipes and you'll soon have access to all of them!</p>
+            </div>
         </div>
-        <div class="search-container">
-            <form action="/recipes/search/" method="post">
-                {% csrf_token %}
-                {{ form.search_term }}
-                <input type="image" src="{% static '/icons/search-solid.svg' %}" value="Submit">
-            </form>
-        </div>
-        <section>
-            {% if category_list %}
-                {% for key, values in category_list.items %}
-                {% if values %}
-                <article class="category-container">
-                    <h2><a href="/recipes/{{ key }}">{{ key }}</a></h2>
-                    <ul>
-                        {% for x in values %}
-                            <li><a href="/recipes/{{ x.id }}"><img src="{% static x.img_url %}" alt="" /><br/>{{ x.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </article>
+        <div class="content-container">
+            <section>
+                {% if category_list %}
+                    {% for key, values in category_list.items %}
+                    {% if values %}
+                    <article class="category-container">
+                        <h2><a href="/recipes/{{ key }}">{{ key }}</a></h2>
+                        <ul>
+                            {% for x in values %}
+                                <li><a href="/recipes/{{ x.id }}"><img src="{% static x.img_url %}" alt="" /><br/>{{ x.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </article>
+                    {% endif %}
+                    {% endfor %}
                 {% endif %}
-                {% endfor %}
-            {% endif %}
-        </section>
+            </section>
+        </div>
+        <div class="secondary-container">
+            <div class="search-container">
+                <form action="/recipes/search/" method="post">
+                    {% csrf_token %}
+                    {{ form.search_term }}
+                    <input type="image" src="{% static '/icons/search-solid.svg' %}" value="Submit">
+                </form>
+            </div>
+            <p>Hey there, so I'm working on compiling all my usual recipes into one site. I got tired of going through different bookmarks in different sites and wanted them all in a single colleciton so now they're here. I'm working to enable more features beyond manually adding recipes one by one. I'll create some tools to allow you to pull most of a recipe from verious popular sites with minimal editing.</p>
+        </div>
     </div>
 </body>
 </html>
