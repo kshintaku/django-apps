@@ -33,6 +33,10 @@
         gap: 25%;
     }
 
+    h2 {
+        text-transform: capitalize;
+    }
+
     img {
         max-width: 80%;
         height: auto;

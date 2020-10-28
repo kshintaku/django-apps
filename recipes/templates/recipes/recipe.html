@@ -15,7 +15,7 @@
         </ul>
     </nav>
     <div class="container">
-        <div class="header-section">
+        <!-- <div class="header-container">
             <div class="header-frame">
                 {% if title %}
                     <h2>{{ title }}</h2>
@@ -23,39 +23,49 @@
                     <p>No recipe found =(</p>
                 {% endif %}
             </div>
-        </div>
-        <div class="search-container">
-            <form action="/recipes/search/" method="post">
-                {% csrf_token %}
-                {{ form.search_term }}
-                <input type="image" src="{% static '/icons/search-solid.svg' %}" value="Submit">
-            </form>
-        </div>
-        <div class="main-image">
-            <img src="{% static main_url %}" alt="">
-        </div>
-        <article>
-            <div class="ingredient-section">
-                {% for type, value in ingredients.items %}
-                    <ul class="ingredient-group">
-                        <li><b>{{ type }}</b></li>
-                        <ul>
-                            {% for item, value2 in value.items %}
-                                <li>{{ value2.amount }} {{ value2.unit }} {{ item }}</li>
-                            {% endfor %}
+        </div> -->
+        <div class="content-container">
+            {% if title %}
+                    <h2>{{ title }}</h2>
+                {% else %}
+                    <p>No recipe found =(</p>
+            {% endif %}
+            <div class="main-image">
+                <img src="{% static main_url %}" alt="">
+            </div>
+            <article>
+                <div class="ingredient-section">
+                    {% for type, value in ingredients.items %}
+                        <ul class="ingredient-group">
+                            <li><b>{{ type }}</b></li>
+                            <ul>
+                                {% for item, value2 in value.items %}
+                                    <li>{{ value2.amount }} {{ value2.unit }} {{ item }}</li>
+                                {% endfor %}
+                            </ul>
                         </ul>
-                    </ul>
-                {% endfor %}
-            </div>
-            <div class="steps-section">
-                <h3>Directions:</h3>
-                <ol>
-                    {% for step in directions %}
-                        <li>{{ step }}</li>
                     {% endfor %}
-                </ol>
+                </div>
+                <div class="steps-section">
+                    <h3>Directions:</h3>
+                    <ol>
+                        {% for step in directions %}
+                            <li>{{ step }}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </article>
+        </div>
+        <div class="secondary-container">
+            <div class="search-container">
+                <form action="/recipes/" method="post">
+                    {% csrf_token %}
+                    {{ form.search_term }}
+                    <input type="image" src="{% static '/icons/search-solid.svg' %}" value="Submit">
+                </form>
             </div>
-        </article>
+            <p>Hey there, so I'm working on compiling all my usual recipes into one site. I got tired of going through different bookmarks in different sites and wanted them all in a single colleciton so now they're here. I'm working to enable more features beyond manually adding recipes one by one. I'll create some tools to allow you to pull most of a recipe from verious popular sites with minimal editing.</p>
+        </div>
     </div>
 </body>
 </html>
