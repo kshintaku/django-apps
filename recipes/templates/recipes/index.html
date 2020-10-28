@@ -41,7 +41,7 @@
         </div>
         <div class="secondary-container">
             <div class="search-container">
-                <form action="/recipes/search/" method="post">
+                <form action="/recipes/" method="post">
                     {% csrf_token %}
                     {{ form.search_term }}
                     <input type="image" src="{% static '/icons/search-solid.svg' %}" value="Submit">
