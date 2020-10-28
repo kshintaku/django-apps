@@ -35,11 +35,10 @@
 
     h2 {
         text-transform: capitalize;
+        margin: 0;
     }
 
     img {
-        max-width: 80%;
-        height: auto;
         border-radius: 10px;
     }
 
@@ -60,10 +59,15 @@
     section {
         display: inline-flex;
         flex-direction: row;
-        width: 100%;
         text-align: center;
         justify-content: center;
         flex-wrap: wrap;
+    }
+
+    article {
+        display: flex;
+        flex-direction: column;
+        margin: 0.3em;
     }
 
     article h2 {
@@ -76,11 +80,12 @@
         text-align: center;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 2rem;
+        gap: 0.4em;
     }
 
     article img {
-        width: 25rem;
+        /* padding: 0.1em; */
+        width: 25em;
     }
 
     .ingredient-section {
@@ -109,10 +114,7 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        border: 4%
     }
-
-   
 
     .header-container {
         width: 100%;
@@ -121,24 +123,29 @@
         text-align: center;
     }
 
+    /* .category-container {
+        margin-left: 1%;
+    } */
+
     .content-container {
         text-align: center;
         margin: 2%;
-        border: darkblue;
-        border-radius: 10px;
-        border-style: outset;
-        border-width: 2px;
-        width: 70%;
+        flex: 65%;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
         margin-left: auto;
         margin-right: auto;
+        gap: 1%;
     }
 
     .secondary-container {
         margin: 2%;
         display: flex;
+        flex: 25%;
         flex-wrap: wrap;
         flex-direction: column;
-        width: 23%;
         margin-left: auto;
         margin-right: auto;
     }
@@ -157,17 +164,20 @@
         }
 
         .header-container {
-            width: 95%;
+            flex: 95%;
+            /* width: 95%; */
         }
 
         .content-container {
             margin: 2%;
-            width: 95%;
+            flex: 95%;
+            /* width: 95%; */
         }
         
         .secondary-container {
-            margin: 2%;
-            width: 95%;
+            margin: 5%;
+            flex: 95%;
+            /* width: 95%; */
         }
     }
 
@@ -214,5 +224,3 @@
     input[type=image] {
         width: 1.5rem;
     }
-
-    
