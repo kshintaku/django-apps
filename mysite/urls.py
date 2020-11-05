@@ -20,4 +20,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("weather/", include("weather.urls")),
     path("recipes/", include("recipes.urls")),
+    path("urlshortener/", include("urlshortener.urls")),
 ]

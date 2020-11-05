@@ -38,6 +38,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "weather.apps.WeatherConfig",
     "recipes.apps.RecipesConfig",
+    "urlshortener.apps.UrlshortenerConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
