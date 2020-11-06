@@ -1,7 +1,11 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
+
 import requests
 import os
+import json
 
 from .forms import URLForm
 
@@ -13,7 +17,6 @@ def index(request):
         form = URLForm(request.POST)
         if form.is_valid():
             bit_response = get_short_url(form.cleaned_data["url_input"])
-            # print(bit_response)
             short_link = bit_response["link"]
             long_link = bit_response["long_url"]
             form = URLForm()
@@ -29,18 +32,27 @@ def index(request):
 
 
 def get_short_url(url):
+    url = url_fixer(url)
     key = os.environ.get("URL_SHORTENER_KEY")
     headers = {
         'Authorization': f'Bearer {key}',
         'Content-Type': 'application/json',
     }
 
-    # data = f'{{ "long_url": {url}, "domain": "bit.ly"}}'
     data = {
         "long_url": url,
-        # "domain": "bit.ly",
     }
 
-    response = requests.post('https://api-ssl.bitly.com/v4/shorten', headers=headers, data=data).json()
-    print(response)
-    return response
+    return requests.post('https://api-ssl.bitly.com/v4/shorten', headers=headers, data=json.dumps(data)).json()
+
+
+def url_fixer(url):
+    validate = URLValidator()
+    if "://" not in url:
+        url = f"https://{url}"
+    try:
+        validate(url)
+        return url
+    except:
+        print("something went wrong")
+        return url

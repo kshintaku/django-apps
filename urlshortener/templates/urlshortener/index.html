@@ -22,12 +22,16 @@
     </form>
     <div class="shortened">
         {% if short_link %}
-            <input type="text" id="shorturl" value="{{ short_link }}">
-            <button onclick="copyToClipboard()">Copy Text</button>
+            <div class="short-text">
+                <input type="text" id="shorturl" value="{{ short_link }}">
+                <button onclick="copyToClipboard()">Copy Text</button>
+            </div>
             <br>
             <br>
-            <a href="{{ long_link }}">{{ long_link }}</a>
+            <div class="original-long">
+                <a href="{{ long_link }}">{{ long_link }}</a>
             <p>Original long link</p>
+            </div>
         {% endif %}
     </div>
 </body>

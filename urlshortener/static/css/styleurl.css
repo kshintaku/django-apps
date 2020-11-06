@@ -39,6 +39,7 @@ nav ul {
 
 form {
     margin-top: 2em;
+    margin-bottom: 2em;
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
@@ -68,4 +69,39 @@ ul {
     text-transform: capitalize;
     padding-inline-start: 0px;
     padding-inline-end: 0px;
+}
+
+.shortened {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    max-width: 400px;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.shortened input[type=text] {
+    border-radius: 3px 0px 0px 3px;
+}
+
+.short-text {
+    display: flex;
+    flex-direction: row;
+}
+
+button {
+    font-size: large;
+    padding: 0.3em;
+    border: none;
+    border-radius: 0px 3px 3px 0px;
+    width: fit-content;
+    background-color: #797a7e;
+}
+
+.original-long {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
