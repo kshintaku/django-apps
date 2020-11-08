@@ -13,12 +13,16 @@ from .forms import URLForm
 def index(request):
     short_link = ""
     long_link = ""
+    error = ""
     if request.method == "POST":
         form = URLForm(request.POST)
         if form.is_valid():
             bit_response = get_short_url(form.cleaned_data["url_input"])
-            short_link = bit_response["link"]
-            long_link = bit_response["long_url"]
+            if "error" in bit_response:
+                error = bit_response["error"]
+            else:
+                short_link = bit_response["link"]
+                long_link = bit_response["long_url"]
             form = URLForm()
     else:
         form = URLForm()
@@ -27,12 +31,15 @@ def index(request):
         "form": form,
         "short_link": short_link,
         "long_link": long_link,
+        "error": error,
     }
     return HttpResponse(template.render(context, request))
 
 
 def get_short_url(url):
     url = url_fixer(url)
+    if not url:
+        return { "error": "Unable to process user input" }
     key = os.environ.get("URL_SHORTENER_KEY")
     headers = {
         'Authorization': f'Bearer {key}',
@@ -54,5 +61,5 @@ def url_fixer(url):
         validate(url)
         return url
     except:
-        print("something went wrong")
-        return url
+        print("URL did not look good")
+        return False
