@@ -86,7 +86,14 @@ def call_weather(city):
         today = datetime.datetime.now()
         for idx, val in enumerate(more_weather_data["daily"]):
             dict_key = "day" + str(idx + 1)
-            weather_plus_obj[dict_key] = [datetime.datetime(today.year, today.month, today.day+idx).strftime("%A"), "{:.1f}°".format(val["temp"]["day"]), "{:.1f}°".format(val["temp"]["min"]), "{:.1f}°".format(val["temp"]["max"])]
+            weather_plus_obj[dict_key] = [
+                datetime.datetime(today.year, today.month, today.day + idx).strftime(
+                    "%A"
+                ),
+                "{:.1f}°".format(val["temp"]["day"]),
+                "{:.1f}°".format(val["temp"]["min"]),
+                "{:.1f}°".format(val["temp"]["max"]),
+            ]
 
 
 def get_weather(city):
@@ -100,6 +107,7 @@ def get_weather(city):
         + "&units="
         + "imperial"
     ).json()
+
 
 def get_weather_plus(lat, lon):
     weather_url = "https://api.openweathermap.org/data/2.5/onecall?"

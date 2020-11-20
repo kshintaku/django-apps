@@ -1,41 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport", content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener</title>
-    <link rel="stylesheet" href="{% static '/css/styleurl.css' %}" type="text/css">
-    <link rel="icon" href="{% static '/icons/favicon.ico' %}" type="image/x-icon">
-    <script src="{% static '/js/url-app.js' %}" type="text/javascript"></script>
-</head>
-<body>
-    <nav>
-        <ul>
-            <li><a href="javascript:history.back()">Back</a></li>
-        </ul>
-    </nav>
-    <h1>URL Shortener</h1>
-    <form action="/urlshortener/" method="post">
-        {% csrf_token %}
-        {{ form.url_input }}
-    </form>
-    <div class="shortened">
-        {% if short_link %}
+    <head>
+        {% load static %}
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            ,
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>URL Shortener</title>
+        <link
+            rel="stylesheet"
+            href="{% static '/css/styleurl.css' %}"
+            type="text/css"
+        />
+        <link
+            rel="icon"
+            href="{% static '/icons/favicon.ico' %}"
+            type="image/x-icon"
+        />
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="javascript:history.back()">Back</a></li>
+            </ul>
+        </nav>
+        <h1>URL Shortener</h1>
+        <form action="/urlshortener/" method="post">
+            {% csrf_token %} {{ form.url_input }}
+        </form>
+        <div class="shortened">
+            {% if short_link %}
             <div class="short-text">
-                <input type="text" id="shorturl" value="{{ short_link }}">
+                <input type="text" id="shorturl" value="{{ short_link }}" />
                 <button onclick="copyToClipboard()">Copy Text</button>
             </div>
-            <br>
-            <br>
+            <br />
+            <br />
             <div class="original-long">
                 <a href="{{ long_link }}">{{ long_link }}</a>
-            <p>Original long link</p>
+                <p>Original long link</p>
             </div>
-        {% endif %}
-    </div>
-    {% if error %}
+            {% endif %}
+        </div>
+        {% if error %}
         <h3>Sorry, something went wrong. Please try again.</h3>
-    {% endif %}
-</body>
+        {% endif %}
+        <script
+            src="{% static '/js/url-app.js' %}"
+            type="text/javascript"
+        ></script>
+    </body>
 </html>

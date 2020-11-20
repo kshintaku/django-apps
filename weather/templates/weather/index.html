@@ -1,72 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport", content="width=device-width, initial-scale=1.0">
-    <title>Weather</title>
-    <link rel="stylesheet" href="{% static '/css/stylesheet.css' %}" type="text/css">
-    <link rel="icon" href="{% static '/icons/favicon.ico' %}" type="image/x-icon">
-</head>
-<body>
-    <div class="container">
-        <div class="header-section">
-            <div class="header-frame">
-                {% if location.city %}
+    <head>
+        {% load static %}
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            ,
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>Weather</title>
+        <link
+            rel="stylesheet"
+            href="{% static '/css/stylesheet.css' %}"
+            type="text/css"
+        />
+        <link
+            rel="icon"
+            href="{% static '/icons/favicon.ico' %}"
+            type="image/x-icon"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <div class="header-section">
+                <div class="header-frame">
+                    {% if location.city %}
                     <h2>{{ location.city }}</h2>
-                {% elif error %}
+                    {% elif error %}
                     <h2>{{ error.code }}</h2>
                     <p>{{ error.message }}</p>
-                {% else %}
+                    {% else %}
                     <p>Unable to determine location</p>
-                {% endif %}
+                    {% endif %}
+                </div>
             </div>
-        </div>
-        <div class="city-search">
-            <form action="/weather/" method="post">
-                {% csrf_token %}
-                <!-- {{ unit.unit_info }} -->
-                {{ form.loc_info }}
-                <input type="image" src="{% static '/icons/search-solid.svg' %}" value="Submit">
-            </form>
-        </div>
-        <div class="weather-frame">
-            <h3>Current Weather</h3>
+            <div class="city-search">
+                <form action="/weather/" method="post">
+                    {% csrf_token %}
+                    <!-- {{ unit.unit_info }} -->
+                    {{ form.loc_info }}
+                    <input
+                        type="image"
+                        src="{% static '/icons/search-solid.svg' %}"
+                        value="Submit"
+                    />
+                </form>
+            </div>
+            <div class="weather-frame">
+                <h3>Current Weather</h3>
                 {% if main_display.main %}
-                    <div class="weather-display">
-                        <div class="temperature">{{ main_display.temperature }}</div>
-                        <img src="{{ main_display.icon }}" alt="">
-                        <div class="description">{{ main_display.description }}</div>
+                <div class="weather-display">
+                    <div class="temperature">
+                        {{ main_display.temperature }}
                     </div>
+                    <img src="{{ main_display.icon }}" alt="" />
+                    <div class="description">
+                        {{ main_display.description }}
+                    </div>
+                </div>
                 {% endif %}
-            <div class="weather-stats">
-                {% if weather.humidity %}
-                    {% for key, values in weather.items %}
+                <div class="weather-stats">
+                    {% if weather.humidity %} 
+                        {% for key, values in weather.items %}
                         <ul>
                             <li>{{ key }}</li>
                             <li>{{ values }}</li>
                         </ul>
-                    {% endfor %}
-                {% else %}
-                    <p>No weather information available</p>
-                {% endif %}
-            </div>
-            {% if weather.humidity %}
+                        {% endfor %}
+                    {% else %}
+                        <p>No weather information available</p>
+                    {% endif %}
+                </div>
+                {% if weather.humidity %}
                 <div class="forecast-stats">
                     <ul class="forecast-header">
                         <li><strong>This weeks weather</strong></li>
                         <li><strong>min/max</strong></li>
                     </ul>
                     {% for key, values in weather_plus.items %}
-                        <ul class="forecast-details">
-                            <li class="day-temp">{{ values.0 }}</li>
-                            <li class="min-temp">{{ values.1 }}</li>
-                            <li class="max-temp">{{ values.2 }} / {{ values.3 }}</li>
-                        </ul>
+                    <ul class="forecast-details">
+                        <li class="day-temp">{{ values.0 }}</li>
+                        <li class="min-temp">{{ values.1 }}</li>
+                        <li class="max-temp">
+                            {{ values.2 }} / {{ values.3 }}
+                        </li>
+                    </ul>
                     {% endfor %}
                 </div>
-            {% endif %}
+                {% endif %}
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>
