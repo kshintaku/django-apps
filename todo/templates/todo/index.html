@@ -6,25 +6,52 @@
         <title>Document</title>
     </head>
     <body>
-        {% if tasks %} {% for x in tasks %}
-        <div>{{ x.title }}</div>
-        <form action="/todo/" method="POST">
-            {% csrf_token %}
-            <button type="submit" name="del" value={{ x.id }}>Delete</button>
-        </form>
-        {% if not x.paused %}
-            <form action="/todo/" method="POST">
-                {% csrf_token %}
-                <button type="submit" name="pause" value={{ x.id }}>Pause</button>
-            </form>
+        {% if tasks %}
+            <h1>Tasks</h1>
+            {% for x in tasks %}
+                <div>{{ x.title }}</div>
+                <form action="/todo/" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" name="del" value={{ x.id }}>Delete</button>
+                </form>
+                {% if not x.paused %}
+                    <form action="/todo/" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" name="pause" value={{ x.id }}>Pause</button>
+                    </form>
+                {% endif %}
+                {% if not x.complete %}
+                    <form action="/todo/" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" name="complete" value={{ x.id }}>
+                            Complete
+                        </button>
+                    </form>
+                {% endif %}
+            {% endfor %}
+            <h1>Paused Tasks</h1>
+            {% for p in paused %}
+                {{ p.title }}
+                <form action="/todo/" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" name="del" value={{ p.id }}>Delete</button>
+                </form>
+                {% if not p.complete %}
+                    <form action="/todo/" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" name="complete" value={{ p.id }}>Complete</button>
+                    </form>
+                {% endif %}
+            {% endfor %}
+            <h1>Completed Tasks</h1>
+            {% for c in complete %}
+                {{ c.title }}
+                <form action="/todo/" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" name="del" value={{ c.id }}>Delete</button>
+                </form>
+            {% endfor %}
         {% endif %}
-        {% if not x.complete %}
-            <form action="/todo/" method="POST">
-                {% csrf_token %}
-                <button type="submit" name="complete" value={{ x.id }}>Complete</button>
-            </form>
-        {% endif %}
-        {% endfor %} {% endif %}
         <form action="/todo/" method="post">
             {% csrf_token %} {{ form }}
             <input type="submit" value="Add Task" />

@@ -6,7 +6,9 @@ from .forms import TaskForm
 
 def index(request):
     form = TaskForm()
-    task_list = Todo.objects.order_by("-date")
+    task_list = Todo.objects.order_by("-date").filter(complete=False, paused=False)
+    pause_list = Todo.objects.order_by("-date").filter(paused=True)
+    complete_list = Todo.objects.order_by("-date").filter(complete=True)
     template = loader.get_template("todo/index.html")
     if request.method == "POST":
         if "del" in request.POST:
@@ -18,6 +20,7 @@ def index(request):
         if "complete" in request.POST:
             temp = Todo.objects.get(pk=request.POST["complete"])
             temp.complete = True
+            temp.paused = False
             temp.save()
         form = TaskForm(request.POST)
         if form.is_valid():
@@ -28,6 +31,8 @@ def index(request):
             form = TaskForm()
     context = {
         "tasks": task_list,
+        "paused": pause_list,
+        "complete": complete_list,
         "form": form,
     }
     return HttpResponse(template.render(context, request))
