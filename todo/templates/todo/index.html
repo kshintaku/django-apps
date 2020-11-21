@@ -8,8 +8,22 @@
     <body>
         {% if tasks %} {% for x in tasks %}
         <div>{{ x.title }}</div>
-        <div>{{ x.complete }}</div>
-        <div>{{ x.paused }}</div>
+        <form action="/todo/" method="POST">
+            {% csrf_token %}
+            <button type="submit" name="del" value={{ x.id }}>Delete</button>
+        </form>
+        {% if not x.paused %}
+            <form action="/todo/" method="POST">
+                {% csrf_token %}
+                <button type="submit" name="pause" value={{ x.id }}>Pause</button>
+            </form>
+        {% endif %}
+        {% if not x.complete %}
+            <form action="/todo/" method="POST">
+                {% csrf_token %}
+                <button type="submit" name="complete" value={{ x.id }}>Complete</button>
+            </form>
+        {% endif %}
         {% endfor %} {% endif %}
         <form action="/todo/" method="post">
             {% csrf_token %} {{ form }}
