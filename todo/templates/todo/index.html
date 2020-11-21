@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% if status %}
-        {% for x in status %}
-            <div>{{ x }}</div>
-        {% endfor %}
-    {% endif %}
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        {% if tasks %} {% for x in tasks %}
+        <div>{{ x.title }}</div>
+        <div>{{ x.complete }}</div>
+        <div>{{ x.paused }}</div>
+        {% endfor %} {% endif %}
+        <form action="/todo/" method="post">
+            {% csrf_token %} {{ form }}
+            <input type="submit" value="Add Task" />
+        </form>
+    </body>
 </html>

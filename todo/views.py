@@ -1,22 +1,23 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-import requests
-import os
-import datetime
-
 from .models import Todo
 from .forms import TaskForm
 
 
 def index(request):
-    status = []
+    form = TaskForm()
     task_list = Todo.objects.order_by("-date")
-    for stat in Todo.STATUS:
-        status.append(stat)
     template = loader.get_template("todo/index.html")
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            task = form.cleaned_data["task_title"]
+            Todo.objects.create(title=task, complete=False, paused=False)
+            form = TaskForm()
+        else:
+            form = TaskForm()
     context = {
-        "list": task_list,
-        "status": status,
+        "tasks": task_list,
+        "form": form,
     }
     return HttpResponse(template.render(context, request))
