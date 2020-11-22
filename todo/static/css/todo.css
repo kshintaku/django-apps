@@ -88,6 +88,8 @@ input[type=text] {
     flex: auto;
     align-items: center;
     margin-left: 1rem;
+    color: white;
+    opacity: 60%;
 }
 
 input[type=text]:focus {
