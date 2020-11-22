@@ -1,60 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% load static %}
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{% static '/css/todo.css' %}" type="text/css" />
+        <link rel="icon" href="{% static '/icons/favicon.ico' %}" type="image/x-icon" />
+        <script
+            src="https://kit.fontawesome.com/f03b43d7c4.js"
+            crossorigin="anonymous"
+        ></script>
         <title>Document</title>
     </head>
     <body>
-        {% if tasks %}
-            <h1>Tasks</h1>
-            {% for x in tasks %}
-                <div>{{ x.title }}</div>
-                <form action="/todo/" method="POST">
-                    {% csrf_token %}
-                    <button type="submit" name="del" value={{ x.id }}>Delete</button>
-                </form>
-                {% if not x.paused %}
-                    <form action="/todo/" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" name="pause" value={{ x.id }}>Pause</button>
-                    </form>
-                {% endif %}
-                {% if not x.complete %}
-                    <form action="/todo/" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" name="complete" value={{ x.id }}>
-                            Complete
-                        </button>
-                    </form>
-                {% endif %}
-            {% endfor %}
-            <h1>Paused Tasks</h1>
-            {% for p in paused %}
-                {{ p.title }}
-                <form action="/todo/" method="POST">
-                    {% csrf_token %}
-                    <button type="submit" name="del" value={{ p.id }}>Delete</button>
-                </form>
-                {% if not p.complete %}
-                    <form action="/todo/" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" name="complete" value={{ p.id }}>Complete</button>
-                    </form>
-                {% endif %}
-            {% endfor %}
-            <h1>Completed Tasks</h1>
-            {% for c in complete %}
-                {{ c.title }}
-                <form action="/todo/" method="POST">
-                    {% csrf_token %}
-                    <button type="submit" name="del" value={{ c.id }}>Delete</button>
-                </form>
-            {% endfor %}
-        {% endif %}
-        <form action="/todo/" method="post">
-            {% csrf_token %} {{ form }}
-            <input type="submit" value="Add Task" />
-        </form>
+        <div class="container">
+            <div class="container-date">
+                <div class="container-date-left">
+                    <div id="date"></div>
+                    <div class="container-date-left-stacked">
+                        <div id="month"></div>
+                        <div id="year"></div>
+                    </div>
+                </div>
+                <div class="container-date-right">
+                    <div id="day"></div>
+                </div>
+            </div>
+            <form action="/todo/" method="post" class="add-task">
+                {% csrf_token %} {{ form }}
+                <button type="submit">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </form>
+            {% if tasks %}
+                <div class="current-tasks">
+                    {% for x in tasks %}
+                        <div class="container-task">
+                            <div class="task-title">{{ x.title }}</div>
+                            <div class="container-buttons">
+                                <form action="/todo/" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" name="del" value={{ x.id }}>
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </form>
+                                <form action="/todo/" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" name="pause" value={{ x.id }}>
+                                        <i class="fas fa-pause"></i>
+                                    </button>
+                                </form>
+                                <form action="/todo/" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" name="complete" value={{ x.id }}>
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if paused %}
+                <div class="pause-header">
+                    <span onclick="togglePause()" id="click-pause">-</span>
+                    <div>Do Later</div>
+                </div>
+                <div class="paused-tasks" id="paused-tasks">
+                    {% for p in paused %}
+                        <div class="container-task">
+                            <div class="task-title">{{ p.title }}</div>
+                            <div class="container-buttons">
+                                <form action="/todo/" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" name="del" value={{ p.id }}>
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </form>
+                                <form action="/todo/" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" name="complete" value={{ p.id }}>
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if complete %}
+                <div class="complete-header">
+                    <span onclick="toggleComplete()" id="click-complete">+</span>
+                    <div>Completed</div>
+                </div>
+                <div class="completed-tasks" id="completed-tasks">
+                    {% for c in complete %}
+                        <div class="container-task">
+                            <div class="task-title">{{ c.title }}</div>
+                            <div class="container-buttons">
+                                <form action="/todo/" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" name="del" value={{ c.id }}>
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <script src="{% static '/scripts/todo.js' %}"></script>
     </body>
 </html>
