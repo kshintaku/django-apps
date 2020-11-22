@@ -15,7 +15,11 @@ class Migration(migrations.Migration):
             name='paused',
             field=models.BooleanField(blank=True, default=False, verbose_name='paused'),
         ),
-        migrations.AlterField(
+        migrations.RemoveField(
+            model_name='todo',
+            name='complete',
+        ),
+        migrations.AddField(
             model_name='todo',
             name='complete',
             field=models.BooleanField(blank=True, default=False, verbose_name='complete'),
