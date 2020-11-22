@@ -1,6 +1,6 @@
 # Todo App
 
-![alt text](https://raw.githubusercontent.com/kshintaku/django-apps/main/todo/ss-todo.png "Screen Shot")
+![alt text](https://raw.githubusercontent.com/kshintaku/django-apps/master/todo/ss-todo.png "Screen Shot")
 
 Replicating a Todo app in Django for practice and fun.
 
