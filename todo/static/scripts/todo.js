@@ -17,7 +17,7 @@ function dayOfWeekAsString(dayIndex) {
 * @return {String} Returns month as string
 */
 function monthOfYearAsString(monthIndex) {
-    return ["January","February","March","April","May","June","July","August","September","October","November","December"][monthIndex] || '';
+    return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][monthIndex] || '';
 }
 
 document.getElementById("date").innerHTML = today.getDate();

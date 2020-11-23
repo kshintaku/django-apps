@@ -108,6 +108,10 @@ input[type=text]:focus {
     flex-direction: column;
 }
 
+span {
+    width: 0.8rem;
+}
+
 #completed-tasks {
     max-height: 0;
     overflow: hidden;
