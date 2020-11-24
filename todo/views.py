@@ -33,8 +33,8 @@ def index(request):
     complete_list = Todo.objects.order_by("-date").filter(complete=True)
     sum_list = len(task_list) + len(pause_list) + len(complete_list)
     if sum_list > 0:
-        pause_bar = str(((len(pause_list) + len(complete_list)) / sum_list)*100) + "%"
-        complete_bar = str((len(complete_list) / (sum_list))*100) + "%"
+        pause_bar = str(((len(pause_list) + len(complete_list)) / sum_list) * 100) + "%"
+        complete_bar = str((len(complete_list) / (sum_list)) * 100) + "%"
     template = loader.get_template("todo/index.html")
     context = {
         "tasks": task_list,
