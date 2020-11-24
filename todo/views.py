@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import Todo
 from .forms import TaskForm
@@ -6,10 +6,6 @@ from .forms import TaskForm
 
 def index(request):
     form = TaskForm()
-    task_list = Todo.objects.order_by("-date").filter(complete=False, paused=False)
-    pause_list = Todo.objects.order_by("-date").filter(paused=True)
-    complete_list = Todo.objects.order_by("-date").filter(complete=True)
-    template = loader.get_template("todo/index.html")
     if request.method == "POST":
         if "del" in request.POST:
             Todo.objects.get(pk=request.POST["del"]).delete()
@@ -29,10 +25,23 @@ def index(request):
             form = TaskForm()
         else:
             form = TaskForm()
+        return HttpResponseRedirect(request.path_info)
+    pause_bar = 0
+    complete_bar = 0
+    task_list = Todo.objects.order_by("-date").filter(complete=False, paused=False)
+    pause_list = Todo.objects.order_by("-date").filter(paused=True)
+    complete_list = Todo.objects.order_by("-date").filter(complete=True)
+    sum_list = len(task_list) + len(pause_list) + len(complete_list)
+    if sum_list > 0:
+        pause_bar = str(((len(pause_list) + len(complete_list)) / sum_list)*100) + "%"
+        complete_bar = str((len(complete_list) / (sum_list))*100) + "%"
+    template = loader.get_template("todo/index.html")
     context = {
         "tasks": task_list,
         "paused": pause_list,
         "complete": complete_list,
         "form": form,
+        "complete_bar": complete_bar,
+        "pause_bar": pause_bar,
     }
     return HttpResponse(template.render(context, request))

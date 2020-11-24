@@ -26,6 +26,10 @@
                     <div id="day"></div>
                 </div>
             </div>
+            <div class="progress">
+                <div class="complete-bar" id="complete-bar" style="width: {{ complete_bar }};"></div>
+                <div class="pause-bar" id="pause-bar" style="width: {{ pause_bar }};"></div>
+            </div>
             <form action="/todo/" method="post" class="add-task">
                 {% csrf_token %} {{ form }}
                 <button type="submit">

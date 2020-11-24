@@ -10,7 +10,7 @@ body {
     line-height: 1.5;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
         Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background-color: #403F4D;
+    background-color: #403f4d;
 }
 
 button {
@@ -67,11 +67,40 @@ button {
     margin-bottom: auto;
 }
 
+.progress {
+    background: grey;
+    justify-content: flex-start;
+    border-radius: 5px;
+    align-items: center;
+    position: relative;
+    display: flex;
+    height: 1rem;
+    width: 100%;
+    margin-bottom: 0.6rem;
+}
+
+.pause-bar {
+    position: absolute;
+    border-radius: 5px;
+    background: yellow;
+    height: 1rem;
+    width: 0%;
+}
+
+.complete-bar {
+    z-index: 2;
+    position: absolute;
+    border-radius: 5px;
+    background: lightgreen;
+    height: 1rem;
+    width: 0%;
+}
+
 .add-task {
     width: 100%;
     display: flex;
     height: 3.5rem;
-    background-color: #2E2D33;
+    background-color: #2e2d33;
     border-radius: 3px;
 }
 
@@ -79,7 +108,7 @@ button {
     display: none;
 }
 
-input[type=text] {
+input[type="text"] {
     border: none;
     background-color: transparent;
     border-style: none;
@@ -92,7 +121,7 @@ input[type=text] {
     opacity: 60%;
 }
 
-input[type=text]:focus {
+input[type="text"]:focus {
     outline: none;
 }
 
@@ -110,6 +139,7 @@ input[type=text]:focus {
 
 span {
     width: 0.8rem;
+    cursor: pointer;
 }
 
 #completed-tasks {
@@ -129,7 +159,7 @@ span {
     width: 100%;
     display: flex;
     height: 3.5rem;
-    background-color: #4E4E5C;
+    background-color: #4e4e5c;
     border-radius: 3px;
     margin-top: 0.5rem;
     align-items: center;
