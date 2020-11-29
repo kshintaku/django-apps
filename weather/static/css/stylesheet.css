@@ -158,6 +158,25 @@ ul {
     margin-top: 2rem;
 }
 
+.forecast-details {
+    display: flex;
+}
+
+.day-temp {
+    flex: auto;
+    width: 5rem;
+}
+
+.min-temp {
+    flex: auto;
+}
+
+.max-temp {
+    flex: auto;
+    justify-content: flex-end;
+    display: flex;
+}
+
 footer {
     margin: 0;
     overflow: hidden;

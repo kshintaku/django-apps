@@ -87,13 +87,13 @@ def call_weather(city):
         for idx, val in enumerate(more_weather_data["daily"]):
             dict_key = "day" + str(idx + 1)
             weather_plus_obj[dict_key] = [
-                datetime.datetime(today.year, today.month, today.day + idx).strftime(
-                    "%A"
-                ),
+                # datetime.datetime(today.year, today.month, today.day + idx).strftime("%A"),
+                today.strftime("%A"),
                 "{:.1f}°".format(val["temp"]["day"]),
                 "{:.1f}°".format(val["temp"]["min"]),
                 "{:.1f}°".format(val["temp"]["max"]),
             ]
+            today += datetime.timedelta(days=1)
 
 
 def get_weather(city):
