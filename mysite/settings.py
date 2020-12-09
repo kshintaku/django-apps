@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "scheduler.apps.SchedulerConfig",
     "todo.apps.TodoConfig",
     "weather.apps.WeatherConfig",
     "recipes.apps.RecipesConfig",
