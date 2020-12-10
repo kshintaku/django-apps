@@ -1,39 +1,29 @@
 from datetime import datetime, timedelta
-from calendar import HTMLCalendar
 from .models import Event
+import calendar
 
 
-class Calendar(HTMLCalendar):
+class Calendar:
     def __init__(self, year=None, month=None):
         self.year = year
         self.month = month
-        super(Calendar, self).__init__()
+        month_name = ["January", "February", "March", "April",
+            "May", "June", "July", "August",
+            "September", "October", "November", "December"]
+        self.str_month = month_name[self.month-1]
 
-        # formats a day as a td
-        def formatday(self, day, events):
-            events_per_day = events.filter(start_time__day=day)
-            d = ""
-            for event in events_per_day:
-                d += f"<li> {event.title} </li>"
-
-            if day != 0:
-                return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"
-            return '<td></td>'
-
-    # formats a week as a tr
-    def formatweek(self, theweek, events):
-        week = ''
-        for d, weekday in theweek:
-            week += self.formatday(d, events)
-        return f'<tr> {week} </tr>'
-
-    # formats a month as a table
-    # filter events by year and month
-    def formatmonth(self, withyear=True):
-        events = Event.objects.filter(start_time__year=self.year, start_time__month=self.month)
-        cal = f'<table border="0" cellpadding="0" cellspacing="0" class="calendar">\n'
-        cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'
-        cal += f'{self.formatweekheader()}\n'
-        for week in self.monthdays2calendar(self.year, self.month):
-            cal += f'{self.formatweek(week, events)}\n'
-        return cal
+    def format_month(self):
+        month_header = "".join(('<div class="month-header">',
+            f'<span class="month">{self.str_month} {self.year}</span>',
+            '</div>'))
+        return month_header
+    
+    day_header = "".join(('<div class="days-of-week">',
+        '<span class="sun">Sunday</span>',
+        '<span class="mon">Monday</span>',
+        '<span class="tue">Tuesday</span>',
+        '<span class="wed">Wednesday</span>',
+        '<span class="thu">Thursday</span>',
+        '<span class="fri">Friday</span>',
+        '<span class="sat">Saturday</span>',
+        '</div>'))

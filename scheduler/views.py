@@ -3,12 +3,20 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
 from django.utils.safestring import mark_safe
+from calendar import HTMLCalendar
 
-from .models import *
+from .models import Event
 from .utils import Calendar
 
+
 def index(request):
-    return HttpResponse('hello')
+    dt = datetime.now()
+    # cal = HTMLCalendar(firstweekday=0).formatmonth(dt.year, dt.month)
+    cal = Calendar(dt.year, dt.month)
+    return HttpResponse(cal.format_month())
+
+    # return HttpResponse('hello')
+
 
 class CalendarView(generic.ListView):
     model = Event
