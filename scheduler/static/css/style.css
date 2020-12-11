@@ -1,0 +1,21 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.week, .days-of-week {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.day {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
