@@ -12,7 +12,6 @@ def index(request):
     cal = Calendar(dt.year, dt.month).format_month()
 
     template = loader.get_template("scheduler/index.html")
-    print(mark_safe(cal))
     context = {
         "calendar": mark_safe(cal),
     }
