@@ -11,6 +11,8 @@
 <body>
     <div class="container">
         {{ calendar }}
+        {% block content %}
+        {% endblock %}
     </div>
     <script src="{% static '/scripts/scheduler.js' %}"></script>
 </body>
